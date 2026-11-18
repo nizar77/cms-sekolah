@@ -6,18 +6,22 @@
         min-height: 14px;
         list-style: none;
     }
+
     .nested-sortable .nested-sortable {
         padding-left: 1.5rem;
         margin-top: 0.5rem;
         border-left: 2px dashed #cbd5e1;
     }
+
     .dark .nested-sortable .nested-sortable {
         border-left-color: #334155;
     }
+
     .sortable-ghost {
         opacity: 0.4;
         background-color: #e0e7ff !important;
     }
+
     .dark .sortable-ghost {
         background-color: #1e1b4b !important;
     }
@@ -34,26 +38,20 @@
             <button @click="show = false" class="text-emerald-600 hover:text-emerald-800 font-bold text-lg leading-none">&times;</button>
         </div>
     <?php endif; ?>
-
-    <?php if (session()->getFlashdata('error')) : ?>
-        <div x-data="{ show: true }" x-show="show" class="mb-6 flex items-center justify-between p-4 rounded-xl bg-rose-50 dark:bg-rose-950/50 border border-rose-200 dark:border-rose-800 text-rose-800 dark:text-rose-300 text-sm">
-            <span><?= esc(session()->getFlashdata('error')) ?></span>
-            <button @click="show = false" class="text-rose-600 hover:text-rose-800 font-bold text-lg leading-none">&times;</button>
-        </div>
-    <?php endif; ?>
+    <!-- flass message -->
 
     <!-- Notifikasi AJAX Reaktif Alpine.js (Saat Simpan Urutan Drag & Drop) -->
-    <div x-show="toastMessage" 
-         x-cloak
-         x-transition
-         :class="toastError ? 'bg-rose-50 dark:bg-rose-950/50 border-rose-200 dark:border-rose-800 text-rose-800 dark:text-rose-300' : 'bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300'"
-         class="mb-6 flex items-center justify-between p-4 rounded-xl border text-sm">
+    <div x-show="toastMessage"
+        x-cloak
+        x-transition
+        :class="toastError ? 'bg-rose-50 dark:bg-rose-950/50 border-rose-200 dark:border-rose-800 text-rose-800 dark:text-rose-300' : 'bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300'"
+        class="mb-6 flex items-center justify-between p-4 rounded-xl border text-sm">
         <span x-text="toastMessage"></span>
         <button @click="toastMessage = ''" class="font-bold text-lg leading-none">&times;</button>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        
+
         <!-- Kolom Kiri (4 Kolom): Form Tambah Menu -->
         <div class="lg:col-span-4">
             <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-xs">
@@ -69,8 +67,8 @@
                             Label Menu <span class="text-rose-500">*</span>
                         </label>
                         <input type="text" name="title" required
-                               placeholder="Contoh: Profil Sekolah"
-                               class="w-full px-3.5 py-2 text-sm rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            placeholder="Contoh: Profil Sekolah"
+                            class="w-full px-3.5 py-2 text-sm rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     </div>
 
                     <div>
@@ -78,8 +76,8 @@
                             URL / Tautan <span class="text-rose-500">*</span>
                         </label>
                         <input type="text" name="url" required
-                               placeholder="Contoh: /halaman/visi-misi"
-                               class="w-full px-3.5 py-2 text-sm rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            placeholder="Contoh: /halaman/visi-misi"
+                            class="w-full px-3.5 py-2 text-sm rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                         <p class="mt-1.5 text-[11px] text-slate-500 dark:text-slate-400">
                             Gunakan tanda <code class="px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono">#</code> jika hanya sebagai induk dropdown.
                         </p>
@@ -89,17 +87,17 @@
                         <label class="block text-xs font-semibold mb-1.5 text-slate-600 dark:text-slate-300">
                             Target Buka Link
                         </label>
-                        <select name="target" 
-                                class="w-full px-3.5 py-2 text-sm rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <select name="target"
+                            class="w-full px-3.5 py-2 text-sm rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                             <option value="_self">Tab Saat Ini (_self)</option>
                             <option value="_blank">Tab Baru (_blank)</option>
                         </select>
                     </div>
 
-                    <button type="submit" 
-                            class="w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm rounded-xl shadow-sm transition flex items-center justify-center gap-2 cursor-pointer">
+                    <button type="submit"
+                        class="w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm rounded-xl shadow-sm transition flex items-center justify-center gap-2 cursor-pointer">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                         </svg>
                         <span>Tambahkan ke Menu</span>
                     </button>
@@ -116,11 +114,11 @@
                         <p class="text-xs text-slate-500 dark:text-slate-400">Tarik item ke atas/bawah untuk mengurutkan, atau geser menjorok ke kanan untuk membuat submenu.</p>
                     </div>
 
-                    <button @click="saveOrder()" 
-                            :disabled="saving"
-                            class="shrink-0 inline-flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white text-xs font-semibold rounded-xl shadow-xs transition cursor-pointer">
+                    <button @click="saveOrder()"
+                        :disabled="saving"
+                        class="shrink-0 inline-flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white text-xs font-semibold rounded-xl shadow-xs transition cursor-pointer">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
                         <span x-text="saving ? 'Menyimpan...' : 'Simpan Susunan'"></span>
                     </button>
@@ -229,7 +227,9 @@
                             'X-Requested-With': 'XMLHttpRequest',
                             'X-CSRF-TOKEN': this.csrfHash
                         },
-                        body: JSON.stringify({ tree: treeData })
+                        body: JSON.stringify({
+                            tree: treeData
+                        })
                     });
 
                     const data = await response.json();
@@ -242,7 +242,9 @@
                     this.toastMessage = 'Terjadi kesalahan jaringan saat menyimpan susunan menu.';
                 } finally {
                     this.saving = false;
-                    setTimeout(() => { this.toastMessage = ''; }, 3500);
+                    setTimeout(() => {
+                        this.toastMessage = '';
+                    }, 3500);
                 }
             }
         }

@@ -19,4 +19,13 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
     $routes->post('menus/save-order', 'Admin\MenuController::saveOrder');
     $routes->get('settings', 'Admin\SettingController::index');
     $routes->post('settings/update', 'Admin\SettingController::update');
+
+    $routes->get('pages', 'Admin\PageController::index');
+    $routes->get('pages/create', 'Admin\PageController::create');
+    $routes->post('pages/store', 'Admin\PageController::store');
+    $routes->get('pages/edit/(:num)', 'Admin\PageController::edit/$1');
+    $routes->post('pages/update/(:num)', 'Admin\PageController::update/$1');
+    $routes->get('pages/delete/(:num)', 'Admin\PageController::delete/$1');
 });
+
+$routes->get('(:any)', 'PageController::view/$1');

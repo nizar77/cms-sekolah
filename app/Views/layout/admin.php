@@ -31,7 +31,38 @@
 </head>
 
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased selection:bg-indigo-500 selection:text-white">
+    <?php if (session()->getFlashdata('success')) : ?>
+        <div x-data="{ show: true }"
+            x-init="setTimeout(() => show = false, 1000)"
+            x-show="show"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4 scale-95"
+            x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+            x-transition:leave-end="opacity-0 translate-y-4 scale-95"
+            class="fixed top-6 right-6 z-50 max-w-md w-auto bg-white dark:bg-slate-900 border border-emerald-500/30 dark:border-emerald-500/30 shadow-2xl rounded-2xl p-4 flex items-center gap-3.5 backdrop-blur-md">
 
+            <!-- Ikon Sukses Bulat -->
+            <div class="w-9 h-9 shrink-0 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
+
+            <!-- Teks Pesan -->
+            <div class="flex-1 text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-100 pr-2">
+                <?= esc(session()->getFlashdata('success')) ?>
+            </div>
+
+            <!-- Tombol Tutup Silang -->
+            <button @click="show = false" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    <?php endif; ?>
     <?php
     // Helper deteksi rute aktif untuk styling menu sidebar
     $currentUri = uri_string();
